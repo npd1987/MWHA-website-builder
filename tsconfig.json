@@ -1,0 +1,7 @@
+{
+  "extends": "./tsconfig.base.json",
+  "compilerOptions": {
+    "types": ["node"]
+  },
+  "include": ["packages/site-model/src", "packages/site-model/test", "tools/publisher/src", "tools/publisher/test"]
+}

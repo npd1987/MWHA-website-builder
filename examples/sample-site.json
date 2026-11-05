@@ -1,0 +1,207 @@
+{
+  "version": 1,
+  "name": "Clay & Co.",
+  "theme": {
+    "headingFont": "playfair",
+    "bodyFont": "inter",
+    "background": "#ffffff",
+    "text": "#1d1d1f",
+    "accent": "#c2532d"
+  },
+  "pages": [
+    {
+      "id": "574ujod8",
+      "title": "Home",
+      "slug": "",
+      "sections": [
+        {
+          "id": "a9t3f3o7",
+          "rows": {
+            "desktop": 18
+          },
+          "background": "transparent",
+          "blocks": [
+            {
+              "id": "vcbilyh5",
+              "type": "heading",
+              "z": 2,
+              "layout": {
+                "desktop": {
+                  "col": 2,
+                  "row": 3,
+                  "colSpan": 11,
+                  "rowSpan": 7
+                }
+              },
+              "props": {
+                "text": "Handmade ceramics for everyday life",
+                "level": 1,
+                "size": 60,
+                "align": "left",
+                "color": ""
+              }
+            },
+            {
+              "id": "64z3yb01",
+              "type": "text",
+              "z": 2,
+              "layout": {
+                "desktop": {
+                  "col": 2,
+                  "row": 11,
+                  "colSpan": 9,
+                  "rowSpan": 3
+                }
+              },
+              "props": {
+                "text": "Small-batch mugs, bowls and planters, made in our studio and shipped to your door.",
+                "size": 19,
+                "align": "left",
+                "color": ""
+              }
+            },
+            {
+              "id": "sd3im56x",
+              "type": "button",
+              "z": 2,
+              "layout": {
+                "desktop": {
+                  "col": 2,
+                  "row": 15,
+                  "colSpan": 6,
+                  "rowSpan": 2
+                }
+              },
+              "props": {
+                "label": "Visit the shop",
+                "href": "#",
+                "variant": "solid",
+                "align": "left"
+              }
+            },
+            {
+              "id": "bi9c9wqr",
+              "type": "shape",
+              "z": 1,
+              "layout": {
+                "desktop": {
+                  "col": 15,
+                  "row": 2,
+                  "colSpan": 9,
+                  "rowSpan": 14
+                }
+              },
+              "props": {
+                "color": "#e8ecf7",
+                "radius": 24
+              }
+            },
+            {
+              "id": "fww6zxk1",
+              "type": "image",
+              "z": 2,
+              "layout": {
+                "desktop": {
+                  "col": 13,
+                  "row": 4,
+                  "colSpan": 10,
+                  "rowSpan": 13
+                }
+              },
+              "props": {
+                "src": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMjAwIiBoZWlnaHQ9IjgwMCIgdmlld0JveD0iMCAwIDEyMDAgODAwIj48ZGVmcz48bGluZWFyR3JhZGllbnQgaWQ9ImciIHgxPSIwIiB5MT0iMCIgeDI9IjEiIHkyPSIxIj48c3RvcCBvZmZzZXQ9IjAiIHN0b3AtY29sb3I9IiNjOWQ2ZmYiLz48c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiNlMmUyZTIiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cmVjdCB3aWR0aD0iMTIwMCIgaGVpZ2h0PSI4MDAiIGZpbGw9InVybCgjZykiLz48Y2lyY2xlIGN4PSI4NjAiIGN5PSIyNjAiIHI9IjkwIiBmaWxsPSIjZmZmZmZmIiBmaWxsLW9wYWNpdHk9IjAuNyIvPjxwYXRoIGQ9Ik0wIDY0MCBMMzIwIDM4MCBMNTYwIDYwMCBMNzYwIDQ2MCBMMTIwMCA3NjAgTDEyMDAgODAwIEwwIDgwMCBaIiBmaWxsPSIjOGZhNGQ4IiBmaWxsLW9wYWNpdHk9IjAuNiIvPjwvc3ZnPg==",
+                "alt": "Ceramic mugs on a shelf",
+                "fit": "cover",
+                "radius": 16
+              }
+            }
+          ]
+        },
+        {
+          "id": "n4evgrc5",
+          "rows": {
+            "desktop": 12
+          },
+          "background": "#f4f1ec",
+          "blocks": [
+            {
+              "id": "gau2bnm9",
+              "type": "heading",
+              "z": 1,
+              "layout": {
+                "desktop": {
+                  "col": 2,
+                  "row": 3,
+                  "colSpan": 8,
+                  "rowSpan": 2
+                }
+              },
+              "props": {
+                "text": "About the studio",
+                "level": 2,
+                "size": 36,
+                "align": "left",
+                "color": ""
+              }
+            },
+            {
+              "id": "dehus99r",
+              "type": "text",
+              "z": 1,
+              "layout": {
+                "desktop": {
+                  "col": 11,
+                  "row": 3,
+                  "colSpan": 12,
+                  "rowSpan": 6
+                }
+              },
+              "props": {
+                "text": "We started with one wheel in a garage. Ten years later we still throw every piece by hand, glaze in small batches, and test each one in our own kitchen.",
+                "size": 18,
+                "align": "left",
+                "color": ""
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "6jw45b0p",
+      "title": "Contact",
+      "slug": "contact",
+      "sections": [
+        {
+          "id": "xnoqh1z0",
+          "rows": {
+            "desktop": 14
+          },
+          "background": "transparent",
+          "blocks": [
+            {
+              "id": "fiw9a7qm",
+              "layout": {
+                "desktop": {
+                  "col": 3,
+                  "row": 3,
+                  "colSpan": 16,
+                  "rowSpan": 3
+                }
+              },
+              "z": 1,
+              "type": "heading",
+              "props": {
+                "text": "Your headline here",
+                "level": 2,
+                "size": 48,
+                "align": "left",
+                "color": ""
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "jsx": "react-jsx",
+    "types": ["vite/client", "node"],
+    "paths": { "@mwha/site-model": ["../../packages/site-model/src/index.ts"] }
+  },
+  "include": ["src", "vite.config.ts"]
+}
