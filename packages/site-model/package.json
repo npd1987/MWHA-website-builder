@@ -1,0 +1,8 @@
+{
+  "name": "@mwha/site-model",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Site data model, grid layout rules and static HTML renderer shared by the editor and publisher",
+  "exports": "./src/index.ts"
+}

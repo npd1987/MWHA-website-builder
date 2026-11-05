@@ -1,0 +1,25 @@
+{
+  "name": "mwha-website-builder",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Drag and drop website builder for WHMCS and cPanel hosting",
+  "license": "MIT",
+  "type": "module",
+  "workspaces": [
+    "apps/*"
+  ],
+  "engines": {
+    "node": ">=22.18"
+  },
+  "scripts": {
+    "dev": "npm run dev -w apps/editor",
+    "build": "npm run build -w apps/editor",
+    "test": "node --test \"packages/site-model/test/*.test.ts\" \"tools/publisher/test/*.test.ts\"",
+    "typecheck": "tsc -p tsconfig.json && npm run typecheck -w apps/editor",
+    "site": "node tools/publisher/src/cli.ts"
+  },
+  "devDependencies": {
+    "@types/node": "^22.15.0",
+    "typescript": "^5.8.3"
+  }
+}
