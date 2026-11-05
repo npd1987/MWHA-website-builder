@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import type { ReactNode } from 'react';
 import { FONTS } from '@mwha/site-model';
 import type { Align, Block, FontId, Section } from '@mwha/site-model';
@@ -62,6 +63,7 @@ const TYPE_NAMES: Record<Block['type'], string> = {
 
 function BlockPanel({ block, section }: { block: Block; section: Section }) {
   const { state, dispatch } = useEditor();
+  const [imageError, setImageError] = useState<string | null>(null);
   const page = currentPage(state);
   const update = (key: string, value: unknown) =>
     dispatch({
@@ -132,14 +134,16 @@ function BlockPanel({ block, section }: { block: Block; section: Section }) {
                 const file = e.target.files?.[0];
                 if (!file) return;
                 try {
+                  setImageError(null);
                   update('src', await readImageFile(file));
                 } catch (err) {
-                  alert((err as Error).message);
+                  setImageError((err as Error).message);
                 }
                 e.target.value = '';
               }}
             />
           </Field>
+          {imageError && <p className="error">{imageError}</p>}
           <Field label="Or image address (URL)">
             <input
               type="text"
@@ -298,6 +302,7 @@ function SitePanel() {
   const { state, dispatch } = useEditor();
   const site = state.present;
   const change = (fn: (s: typeof site) => typeof site) => dispatch({ type: 'change', recipe: fn });
+  const [confirmDelete, setConfirmDelete] = useState<string | null>(null);
   const setTheme = (key: keyof typeof site.theme, value: string) =>
     change((s) => ({ ...s, theme: { ...s.theme, [key]: value } }));
   return (
@@ -353,14 +358,19 @@ function SitePanel() {
             onChange={(e) => change((s) => mapPage(s, p.id, (x) => ({ ...x, slug: slugify(e.target.value) })))}
           />
           <button
-            className="btn icon"
-            title="Delete page"
+            className={`btn icon ${confirmDelete === p.id ? 'danger-solid' : ''}`}
+            title={confirmDelete === p.id ? 'Click again to delete this page' : 'Delete page'}
+            aria-label={confirmDelete === p.id ? `Confirm deleting ${p.title}` : `Delete ${p.title}`}
             disabled={p.slug === ''}
+            onBlur={() => setConfirmDelete(null)}
             onClick={() => {
-              if (confirm(`Delete the page “${p.title}”?`)) change((s) => ({ ...s, pages: s.pages.filter((x) => x.id !== p.id) }));
+              if (confirmDelete === p.id) {
+                setConfirmDelete(null);
+                change((s) => ({ ...s, pages: s.pages.filter((x) => x.id !== p.id) }));
+              } else setConfirmDelete(p.id);
             }}
           >
-            ×
+            {confirmDelete === p.id ? '✓' : '×'}
           </button>
         </div>
       ))}

@@ -25,6 +25,10 @@ export function Toolbar() {
   const site = state.present;
   const page = currentPage(state);
   const [menu, setMenu] = useState(false);
+  const [notice, setNotice] = useState<string | null>(null);
+  const [confirmNew, setConfirmNew] = useState(false);
+  const [previewHtml, setPreviewHtml] = useState<string | null>(null);
+  const [previewWidth, setPreviewWidth] = useState<'desktop' | 'mobile'>('desktop');
   const fileRef = useRef<HTMLInputElement>(null);
 
   const add = (type: BlockType) => {
@@ -42,10 +46,8 @@ export function Toolbar() {
   };
 
   const preview = () => {
-    const html = renderPageHtml(site, page, { inlineCss: true });
-    const url = URL.createObjectURL(new Blob([html], { type: 'text/html' }));
-    window.open(url, '_blank', 'noopener');
-    setTimeout(() => URL.revokeObjectURL(url), 60_000);
+    setPreviewWidth(state.viewport);
+    setPreviewHtml(renderPageHtml(site, page, { inlineCss: true }));
   };
 
   const importFile = async (file: File) => {
@@ -53,12 +55,13 @@ export function Toolbar() {
       const data = JSON.parse(await file.text()) as Site;
       const problems = validateSite(data);
       if (problems.length) {
-        alert(`This file can't be opened:\n\n${problems.join('\n')}`);
+        setNotice(`That file can't be opened: ${problems.join(' ')}`);
         return;
       }
       dispatch({ type: 'load', site: data });
+      setNotice(null);
     } catch {
-      alert('That file is not a saved site (.json).');
+      setNotice('That file is not a saved site. Choose a site.json file saved from the builder.');
     }
   };
 
@@ -129,18 +132,60 @@ export function Toolbar() {
         <button className="btn" onClick={() => download('site.json', JSON.stringify(site, null, 2), 'application/json')}>
           Save file
         </button>
-        <button
-          className="btn"
-          onClick={() => {
-            if (confirm('Start over from the sample template? Your current design will be replaced.')) dispatch({ type: 'load', site: sampleSite() });
-          }}
-        >
-          New
-        </button>
+        {confirmNew ? (
+          <span className="confirm-inline">
+            Replace your design with the sample?
+            <button
+              className="btn danger"
+              onClick={() => {
+                dispatch({ type: 'load', site: sampleSite() });
+                setConfirmNew(false);
+              }}
+            >
+              Replace
+            </button>
+            <button className="btn" onClick={() => setConfirmNew(false)}>
+              Keep
+            </button>
+          </span>
+        ) : (
+          <button className="btn" onClick={() => setConfirmNew(true)}>
+            New
+          </button>
+        )}
         <button className="btn primary" onClick={preview}>
           Preview
         </button>
       </div>
+      {notice && (
+        <div className="notice" role="alert">
+          {notice}
+          <button className="btn link" onClick={() => setNotice(null)}>
+            Dismiss
+          </button>
+        </div>
+      )}
+      {previewHtml && (
+        <div className="preview-overlay" role="dialog" aria-label="Preview">
+          <div className="preview-bar">
+            <strong>Preview: {page.title}</strong>
+            <div className="segmented" role="group" aria-label="Preview device">
+              <button className={previewWidth === 'desktop' ? 'on' : ''} onClick={() => setPreviewWidth('desktop')}>
+                Desktop
+              </button>
+              <button className={previewWidth === 'mobile' ? 'on' : ''} onClick={() => setPreviewWidth('mobile')}>
+                Mobile
+              </button>
+            </div>
+            <button className="btn primary" onClick={() => setPreviewHtml(null)}>
+              Back to editing
+            </button>
+          </div>
+          <div className="preview-stage">
+            <iframe title="Published page preview" className={`preview-frame ${previewWidth}`} srcDoc={previewHtml} sandbox="" />
+          </div>
+        </div>
+      )}
     </header>
   );
 }
